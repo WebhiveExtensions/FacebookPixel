@@ -1,5 +1,5 @@
 {
-    "name": "webhiveextension/facebookpixel",
+    "name": "webhiveextensions/facebookpixel",
     "description": "Facebook Pixel is a module which enable tracking of audience activity in the website.",
     "type": "magento2-module",
     "version": "1.0.0",
