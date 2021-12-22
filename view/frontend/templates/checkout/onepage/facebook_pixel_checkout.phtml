@@ -1,0 +1,38 @@
+<?php if($block->isEnabled() && $block->isInitialCheckoutEnable()){ ?>
+<?php 
+$currency=$block->getCurrency();
+$quote=$block->getQuote();
+$email=$block->getEmail();
+
+// facebook pixel Initial checkout Event
+// retrieve quote items array
+$items = $quote->getAllItems();
+$ids=array();
+$content=array();
+$categoryIds = array();
+foreach($items as $key=>$item) {
+    $product = $block->getProductById($item->getProductId());
+    $ids[$key]= $item->getProductId();
+    $content[$key]=['id'=>$item->getProductId(),'quantity'=>$item->getQty(),'item_price'=>$item->getPrice()];
+    $categoryIds = array_merge($categoryIds,$product->getCategoryIds());
+}
+$categoryIds = implode(',',$categoryIds);
+$item_ids=json_encode($ids);
+$item_content=json_encode($content);
+$qty=$quote->getItemsCount();
+$total=$quote->getGrandTotal();
+?>
+<script type="text/javascript">
+    fbq('track', 'InitiateCheckout', {
+        content_ids: <?= $item_ids?>,
+        content: <?= $item_content?>,
+        num_items: <?=$qty ?>,
+        value: <?=$total?>,
+        content_type: 'product',
+        product_catalog_id: '<?= $item_ids?>',
+        currency: '<?= $currency ?>'
+    });
+</script>
+<!-- facebook pixel Initial checkout Event -->
+
+<?php }?>

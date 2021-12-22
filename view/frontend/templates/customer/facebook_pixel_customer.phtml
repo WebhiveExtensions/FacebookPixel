@@ -1,0 +1,21 @@
+<?php if($block->isEnabled() && $block->isRegisterationEnable()){ ?>
+<script>
+    require([
+    'jquery'], function($){
+        var fb_pixel=1;
+        $('#form-validate').submit(function(e){
+        if($(this).valid()) {
+            if (fb_pixel==1){                                  // browser event for fb pixel
+                e.preventDefault();
+                var name=$('#firstname').val()+' '+$('#lastname').val();
+                fbq('track', 'CompleteRegistration', {
+                    content_name:name,
+                    currency: 'USD',
+                });
+                fb_pixel=0;
+                $('#form-validate').submit();
+            }
+        }});
+    });
+</script>
+<?php } ?>

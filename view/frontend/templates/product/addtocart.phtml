@@ -1,0 +1,32 @@
+<?php 
+if($block->isEnabled() && $block->isAddtocartEnable() && isset($_SESSION['AddToCartFormSubmit'])){ ?>
+<script type="text/javascript">
+    // relly love that it
+    require(['jquery'], function ($) {
+        // added by jawad | ADDTOCART EVENT
+            fbq('track', 'AddToCart', {
+                content_name: <?=$_SESSION['AddToCartFormSubmit']['name']?>, 
+                content_category: <?=$_SESSION['AddToCartFormSubmit']['category']?>,
+                content_ids: <?=$_SESSION['AddToCartFormSubmit']['idsArr']?>,
+                content_type: 'product',
+                product_catalog_id: <?=$_SESSION['AddToCartFormSubmit']['productCatalogIds']?>,
+                value: <?=$_SESSION['AddToCartFormSubmit']['totalPrice']?>,
+                currency: 'USD' 
+            });
+             // ! added by jawad ee| ADDTOCART EVENT
+    });
+</script>
+
+<?php unset($_SESSION['AddToCartFormSubmit']); 
+} ?>
+
+<!-- <script type="text/x-magento-init">
+   {
+    "#product_addtocart_form": {
+        "Magento_Catalog/product/view/validation": {
+            "bindSubmit": true,
+            "radioCheckboxClosest": ".nested"
+        }
+    }
+   }
+</script> -->

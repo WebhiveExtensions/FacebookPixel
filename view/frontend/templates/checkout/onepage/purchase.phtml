@@ -1,0 +1,28 @@
+<?php
+if($block->isEnabled() && $block->isPurchaseEnable()){
+        $currency=$block->getCurrency();
+        $order=$block->getLastOrder();
+        $itemCollection = $order->getItemsCollection(); // get item collection from order
+        $product_id_all  = '';
+        $productTotalPrice= $order->getGrandTotal();
+        foreach ($itemCollection as $_items) {
+            if($product_id_all == ''){
+                $product_id_all =  '"'.$_items->getSku().'"';
+            }
+            else{
+                $product_id_all = $product_id_all.',"'.$_items->getSku().'"' ;
+            }
+            
+         }
+
+
+        ?>
+    <script>
+        fbq('track', 'Purchase', {
+            content_ids: [<?php echo $product_id_all; ?>],
+            content_type: 'product_group',
+            value: '<?php echo $productTotalPrice; ?>',
+            currency: '<?=$currency?>'
+        });
+    </script> 
+<?php }?>

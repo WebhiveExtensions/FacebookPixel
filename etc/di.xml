@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="facebook_pixel_initiate_checkout" type="WebhiveExtensions\FacebookPixel\Plugin\InitiateCheckout" sortOrder="10" disabled="false"  />
+    </type>
+     <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="facebook_pixel_addtocart" type="WebhiveExtensions\FacebookPixel\Plugin\Addtocart" sortOrder="5" disabled="true"  />
+    </type>
+</config>

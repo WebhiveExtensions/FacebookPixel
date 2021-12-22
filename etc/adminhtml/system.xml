@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="facebook_pixel_tab" translate="label" sortOrder="20">
+            <label>Webhive Extensions</label>
+        </tab>
+
+        <section id="facebook_pixel_section" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Facebook Pixel</label>
+            <tab>facebook_pixel_tab</tab>
+            <resource>WebhiveExtensions_FacebookPixel::facebookpixel_config</resource>
+            <group id="fields_config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="facebook_pixel_status" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Facebook Pixel Status</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="facebook_pixel_id" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Facebook Pixel ID</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="facebook_domain_verification" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Facebook Domain Verification Content</label>
+                </field>
+                <field id="access_token" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Access Token</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="test_event_code" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Test Event Code (Optional)</label>
+                    <tooltip>Test event code is only for testing. To test your event tracking enter your test event code here. Must be blank in production mode.</tooltip>
+                </field>
+                <field id="currency" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Currency</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <group id="events_config" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Events Configuration</label>
+                <field id="pageview_event" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Page View (Default: Disable)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="complete_registeration_event" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Complete Registeration (Default: Disable)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="addtocart_event" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Add To Cart (Default: Disable)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="initial_checkout_event" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Initial Checkout (Default: Disable)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="purchase_event" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Purchase (Default: Disable)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+             <group id="fields_developer_config" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Developer Configurations (Optional)</label>
+                 <field id="msrp_custom" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>MSRP Custom Field Name(Default: msrp)</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <facebook_pixel_section>
+            <fields_config>
+                <facebook_pixel_status>0</facebook_pixel_status>
+                <currency>USD</currency>
+            </fields_config>
+            <fields_developer_config>
+                <msrp_custom>msrp</msrp_custom>
+            </fields_developer_config>
+            <events_list_config>
+                <pageview_event>Disable</pageview_event>
+            </events_list_config>
+            <events_list_config>
+                <complete_registeration_event>Disable</complete_registeration_event>
+            </events_list_config>
+            <events_list_config>
+                <addtocart_event>Disable</addtocart_event>
+            </events_list_config>
+            <events_list_config>
+                <initial_checkout_event>Disable</initial_checkout_event>
+            </events_list_config>
+            <events_list_config>
+                <purchase_event>Disable</purchase_event>
+            </events_list_config>
+        </facebook_pixel_section>
+    </default>
+</config>

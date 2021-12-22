@@ -1,0 +1,79 @@
+<?php if($block->isEnabled()){ ?>
+    <?php 
+        $facebook_pixel_id=$block->getFacebookPixelId();
+        $fb_verification_key=$block->getFacebookDomainVerificationKey();
+        $currentUrl = $block->getCurrentUrl();
+        $client_ip=$block->getClientIp();
+        $access_token=$block->getAccessToken();
+        $customerEmailHash=$block->getEmail();
+        $test_event_code=$block->getTestEventCode();
+    ?>
+    <!-- Start Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '<?=$facebook_pixel_id?>');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=<?=$facebook_pixel_id?>&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
+<!-- Start Facebook Domain Verification -->
+<meta name="facebook-domain-verification" content="<?=$fb_verification_key?>" />
+<!-- End Facebook Domain Verification -->
+
+
+
+
+
+<!-- Facebook Pixel Server Event Tracking -->
+<?php
+if($block->isPageViewEnable()){ 
+// facebook pixel Content View Event
+$viewContent=array (
+    'data' =>
+        array (
+            0 =>
+                array (
+                    'event_name' => 'PageView',
+                    'event_time' => time(),
+                    'event_id' => 'event'.time(),
+                    'action_source' => 'website',
+                    'event_source_url' => $currentUrl,
+                    'user_data' =>
+                        array (
+                            "em" => [$customerEmailHash], 
+                            'client_ip_address' => $client_ip,
+                            'client_user_agent' => null,
+                        ),
+                ),
+        ),
+    'test_event_code' => $test_event_code,
+);
+$url="https://graph.facebook.com/v12.0/".$facebook_pixel_id."/events?access_token=".$access_token;
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($viewContent));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+        curl_exec($ch);
+        curl_close($ch);
+?>
+<!-- End Facebook Pixel Server Evemt Tracking -->
+
+
+<!-- Facebook Pixel Browser Event -->
+<script>
+    fbq('track', 'PageView');
+</script> 
+<!-- End Facebook Pixel Browser Event -->
+
+<?php } }?>
+<!-- if end -->

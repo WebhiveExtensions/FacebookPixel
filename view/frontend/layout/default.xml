@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <body>
+        <referenceContainer name="after.body.start">
+            <block
+            class="WebhiveExtensions\FacebookPixel\Block\FacebookPixel" name="facebook_pixel_header"
+            template="WebhiveExtensions_FacebookPixel::facebook_pixel_header.phtml" after="logo"
+            />
+        </referenceContainer>
+         <referenceContainer name="before.body.end">
+            <block class="WebhiveExtensions\FacebookPixel\Block\FacebookPixel" name="pixel_addtocart"  template="WebhiveExtensions_FacebookPixel::product/addtocart.phtml" cacheable="false"/>
+        </referenceContainer>
+   </body>
+</page>
+
